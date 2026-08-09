@@ -1,0 +1,66 @@
+import { describe, expect, it } from 'vitest'
+import { validateBespokeInput, validateSourcingInput } from './validation'
+
+describe('validateBespokeInput', () => {
+  const valid = { name: 'Jane Doe', email: 'jane@example.com', description: 'A custom ring.' }
+
+  it('accepts valid input', () => {
+    expect(validateBespokeInput(valid)).toEqual([])
+  })
+
+  it('rejects a missing name', () => {
+    expect(validateBespokeInput({ ...valid, name: '  ' })).toContain('Name is required.')
+  })
+
+  it('rejects a malformed email', () => {
+    expect(validateBespokeInput({ ...valid, email: 'not-an-email' })).toContain(
+      'A valid email is required.'
+    )
+  })
+
+  it('rejects a missing description', () => {
+    expect(validateBespokeInput({ ...valid, description: '' })).toContain(
+      'Please describe the piece you have in mind.'
+    )
+  })
+})
+
+describe('validateSourcingInput', () => {
+  const valid = {
+    name: 'Jane Doe',
+    email: 'jane@example.com',
+    buyerType: 'private',
+    interest: 'natural',
+    details: 'Looking for a 2-carat round brilliant.',
+  }
+
+  it('accepts valid private-client input', () => {
+    expect(validateSourcingInput(valid)).toEqual([])
+  })
+
+  it('requires a company name for trade buyers', () => {
+    const errors = validateSourcingInput({ ...valid, buyerType: 'trade', companyName: undefined })
+    expect(errors).toContain('Company name is required for trade buyers.')
+  })
+
+  it('accepts trade buyers that provide a company name', () => {
+    const errors = validateSourcingInput({
+      ...valid,
+      buyerType: 'trade',
+      companyName: 'Acme Jewels',
+    })
+    expect(errors).toEqual([])
+  })
+
+  it('rejects an invalid interest value', () => {
+    expect(validateSourcingInput({ ...valid, interest: 'synthetic' })).toContain(
+      'Select a diamond interest.'
+    )
+  })
+
+  it('rejects an invalid buyer type', () => {
+    expect(validateSourcingInput({ ...valid, buyerType: 'wholesale' })).toContain(
+      'Select a buyer type.'
+    )
+  })
+})
