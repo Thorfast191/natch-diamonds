@@ -45,7 +45,7 @@ export function Hero() {
         transition={
           reduced
             ? { duration: 0.4, ease: EASE }
-            : { duration: 1.5, repeat: Infinity, ease: 'easeInOut' }
+            : { duration: 1.5, repeat: Infinity, ease: EASE }
         }
         className="absolute bottom-10 h-16 w-px bg-gold"
         aria-hidden
