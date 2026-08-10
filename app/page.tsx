@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma'
 import { Hero } from '@/components/Hero'
 import { CollectionGrid } from '@/components/CollectionGrid'
+import { ScrollStory } from '@/components/ScrollStory'
 
 export default async function HomePage() {
   const products = await prisma.product.findMany({ orderBy: { createdAt: 'asc' } })
@@ -9,6 +10,7 @@ export default async function HomePage() {
     <main>
       <Hero />
       <CollectionGrid products={products} />
+      <ScrollStory />
     </main>
   )
 }
