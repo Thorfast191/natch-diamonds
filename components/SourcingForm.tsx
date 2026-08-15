@@ -103,9 +103,9 @@ export function SourcingForm() {
         {buyerType === 'trade' && (
           <motion.div
             key="company-name"
-            initial={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, height: reduced ? 'auto' : 0 }}
             animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            exit={{ opacity: 0, height: reduced ? 'auto' : 0 }}
             transition={{ duration: reduced ? 0.4 : 0.5, ease: EASE }}
             className="overflow-hidden"
           >
