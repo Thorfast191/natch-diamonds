@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section className="relative flex h-screen min-h-[600px] w-full items-center justify-center overflow-hidden bg-charcoal text-white">
       <motion.div
-        initial={{ opacity: 0, scale: reduced ? 1 : 1.05 }}
+        initial={{ opacity: 0, scale: 1.05 }}
         animate={{ opacity: 0.5, scale: 1 }}
         transition={{ duration: reduced ? 0.4 : 1.5, ease: EASE }}
         className="absolute inset-0"
@@ -23,7 +23,7 @@ export function Hero() {
       </motion.div>
       <div className="relative z-10 flex flex-col items-center px-6 text-center">
         <motion.h1
-          initial={{ opacity: 0, y: reduced ? 0 : 16 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: reduced ? 0.4 : 1, ease: EASE }}
           className="font-display text-5xl tracking-[0.3em] sm:text-7xl"
@@ -40,7 +40,7 @@ export function Hero() {
         </motion.p>
       </div>
       <motion.div
-        initial={{ opacity: reduced ? 0.6 : 0.3 }}
+        initial={{ opacity: 0.3 }}
         animate={reduced ? { opacity: 0.6 } : { opacity: [0.3, 1, 0.3] }}
         transition={
           reduced
