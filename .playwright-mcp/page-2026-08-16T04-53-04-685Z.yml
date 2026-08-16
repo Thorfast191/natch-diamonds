@@ -1,0 +1,40 @@
+- generic [active] [ref=f30e1]:
+  - alert [ref=f30e9]
+  - main [ref=f30e10]:
+    - heading "Admin" [level=1] [ref=f30e11]
+    - heading "Bespoke Inquiries" [level=2] [ref=f30e12]
+    - table [ref=f30e13]:
+      - rowgroup [ref=f30e14]:
+        - row [ref=f30e15]:
+          - columnheader "Photo" [ref=f30e16]
+          - columnheader "Name" [ref=f30e17]
+          - columnheader "Email" [ref=f30e18]
+          - columnheader "Description" [ref=f30e19]
+          - columnheader "Submitted" [ref=f30e20]
+      - rowgroup [ref=f30e21]:
+        - row [ref=f30e22]:
+          - cell "—" [ref=f30e23]
+          - cell "Playwright Test User" [ref=f30e24]
+          - cell "playwright-test@example.com" [ref=f30e25]
+          - cell "A custom eternity band, platinum, 1.5 carats total." [ref=f30e26]
+          - cell "8/10/2026, 12:37:23 PM" [ref=f30e27]
+    - heading "Sourcing Inquiries" [level=2] [ref=f30e28]
+    - table [ref=f30e29]:
+      - rowgroup [ref=f30e30]:
+        - row [ref=f30e31]:
+          - columnheader "Name" [ref=f30e32]
+          - columnheader "Email" [ref=f30e33]
+          - columnheader "Buyer Type" [ref=f30e34]
+          - columnheader "Company" [ref=f30e35]
+          - columnheader "Interest" [ref=f30e36]
+          - columnheader "Details" [ref=f30e37]
+          - columnheader "Submitted" [ref=f30e38]
+      - rowgroup [ref=f30e39]:
+        - row [ref=f30e40]:
+          - cell "Trade Buyer" [ref=f30e41]
+          - cell "trade-test@example.com" [ref=f30e42]
+          - cell "trade" [ref=f30e43]
+          - cell "Test Wholesale Co" [ref=f30e44]
+          - cell "natural" [ref=f30e45]
+          - cell "Sourcing 50 carats of melee, GIA certified." [ref=f30e46]
+          - cell "8/10/2026, 12:45:54 PM" [ref=f30e47]

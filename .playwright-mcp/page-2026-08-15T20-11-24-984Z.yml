@@ -1,0 +1,98 @@
+- main [ref=f18e2]:
+  - generic [ref=f18e5]:
+    - heading "NATCH DIAMONDS" [level=1] [ref=f18e6]
+    - paragraph [ref=f18e7]: Natural & Lab-Grown, Cut for the Occasion
+  - generic [ref=f18e9]:
+    - heading "The Studs · The Hoops · The Tennis" [level=2] [ref=f18e10]
+    - generic [ref=f18e11]:
+      - article [ref=f18e12]:
+        - img "Solitaire Studs" [ref=f18e14]
+        - generic [ref=f18e15]:
+          - paragraph [ref=f18e16]: The Studs
+          - heading "Solitaire Studs" [level=3] [ref=f18e17]
+          - paragraph [ref=f18e18]: $128,000
+      - article [ref=f18e19]:
+        - img "Bezel Studs" [ref=f18e21]
+        - generic [ref=f18e22]:
+          - paragraph [ref=f18e23]: The Studs
+          - heading "Bezel Studs" [level=3] [ref=f18e24]
+          - paragraph [ref=f18e25]: $96,000
+      - article [ref=f18e26]:
+        - img "Classic Hoops" [ref=f18e28]
+        - generic [ref=f18e29]:
+          - paragraph [ref=f18e30]: The Hoops
+          - heading "Classic Hoops" [level=3] [ref=f18e31]
+          - paragraph [ref=f18e32]: $154,000
+      - article [ref=f18e33]:
+        - img "Pavé Hoops" [ref=f18e35]
+        - generic [ref=f18e36]:
+          - paragraph [ref=f18e37]: The Hoops
+          - heading "Pavé Hoops" [level=3] [ref=f18e38]
+          - paragraph [ref=f18e39]: $187,000
+      - article [ref=f18e40]:
+        - img "Classic Tennis Bracelet" [ref=f18e42]
+        - generic [ref=f18e43]:
+          - paragraph [ref=f18e44]: The Tennis
+          - heading "Classic Tennis Bracelet" [level=3] [ref=f18e45]
+          - paragraph [ref=f18e46]: $342,000
+      - article [ref=f18e47]:
+        - img "Tennis Necklace" [ref=f18e49]
+        - generic [ref=f18e50]:
+          - paragraph [ref=f18e51]: The Tennis
+          - heading "Tennis Necklace" [level=3] [ref=f18e52]
+          - paragraph [ref=f18e53]: $486,000
+  - generic [ref=f18e54]:
+    - heading "Three Houses, One Vision" [level=2] [ref=f18e55]
+    - generic [ref=f18e56]:
+      - generic [ref=f18e57]:
+        - heading "The Collection" [level=3] [ref=f18e58]
+        - paragraph [ref=f18e59]: Ready-to-order pieces from The Studs, The Hoops, and The Tennis — designed once, cut precisely, available now.
+      - generic [ref=f18e60]:
+        - heading "Bespoke" [level=3] [ref=f18e61]
+        - paragraph [ref=f18e62]: "A piece built around one idea: yours. Guided from the first sketch to the final polish."
+      - generic [ref=f18e63]:
+        - heading "Sourcing" [level=3] [ref=f18e64]
+        - paragraph [ref=f18e65]: Natural or lab-grown, private client or trade buyer — stones sourced and verified to the specification you set.
+  - generic [ref=f18e66]:
+    - heading "Bespoke" [level=2] [ref=f18e67]
+    - paragraph [ref=f18e68]: Tell us what you have in mind, and share a photo if you have one.
+    - generic [ref=f18e70]:
+      - generic [ref=f18e71]:
+        - generic [ref=f18e72]: Name
+        - textbox "Name" [ref=f18e73]
+      - generic [ref=f18e74]:
+        - generic [ref=f18e75]: Email
+        - textbox "Email" [ref=f18e76]
+      - generic [ref=f18e77]:
+        - generic [ref=f18e78]: Describe the piece you have in mind
+        - textbox "Describe the piece you have in mind" [ref=f18e79]
+      - generic [ref=f18e80]:
+        - generic [ref=f18e81]: Inspiration photo (optional)
+        - button "Upload photo" [ref=f18e82] [cursor=pointer]
+      - button "Submit Inquiry" [ref=f18e83] [cursor=pointer]
+  - generic [ref=f18e85]:
+    - heading "Diamond Sourcing" [level=2] [ref=f18e86]
+    - paragraph [ref=f18e87]: For private clients and trade buyers sourcing natural or lab-grown stones.
+    - generic [ref=f18e89]:
+      - radiogroup "Buyer type" [ref=f18e90]:
+        - button "Private Client" [pressed] [ref=f18e91] [cursor=pointer]
+        - button "Trade / Professional" [ref=f18e92] [cursor=pointer]
+      - generic [ref=f18e93]:
+        - generic [ref=f18e94]: Name
+        - textbox "Name" [ref=f18e95]
+      - generic [ref=f18e96]:
+        - generic [ref=f18e97]: Email
+        - textbox "Email" [ref=f18e98]
+      - generic [ref=f18e99]:
+        - generic [ref=f18e100]: Diamond interest
+        - combobox "Diamond interest" [ref=f18e101]:
+          - option "Natural" [selected]
+          - option "Lab-grown"
+          - option "Both"
+      - generic [ref=f18e102]:
+        - generic [ref=f18e103]: Details
+        - textbox "Details" [ref=f18e104]
+      - button "Submit Inquiry" [ref=f18e105] [cursor=pointer]
+  - generic [ref=f18e109]:
+    - paragraph [ref=f18e110]: Natch Diamonds
+    - paragraph [ref=f18e111]: © 2026 Natch Diamonds. All rights reserved.

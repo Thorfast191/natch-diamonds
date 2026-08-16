@@ -1,0 +1,10 @@
+- generic [ref=f20e1]:
+  - main [ref=f20e2]:
+    - heading "Admin Login" [level=1] [ref=f20e3]
+    - generic [ref=f20e4]:
+      - generic [ref=f20e5]:
+        - generic [ref=f20e6]: Password
+        - textbox "Password" [ref=f20e7]: wrong-password-xyz
+      - paragraph [ref=f20e10]: Incorrect password.
+      - button "Sign In" [active] [ref=f20e8] [cursor=pointer]
+  - alert [ref=f20e9]

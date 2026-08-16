@@ -1,0 +1,9 @@
+- generic [active] [ref=f17e1]:
+  - main [ref=f17e2]:
+    - heading "Admin Login" [level=1] [ref=f17e3]
+    - generic [ref=f17e4]:
+      - generic [ref=f17e5]:
+        - generic [ref=f17e6]: Password
+        - textbox "Password" [ref=f17e7]
+      - button "Sign In" [ref=f17e8] [cursor=pointer]
+  - alert [ref=f17e9]
