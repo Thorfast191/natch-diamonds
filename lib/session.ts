@@ -62,6 +62,8 @@ export async function verifySessionToken(
   if (!token) return false
   const [expiry, signature] = token.split('.')
   if (!expiry || !signature) return false
-  if ((await sign(expiry)) !== signature) return false
+  const expected = new TextEncoder().encode(await sign(expiry))
+  const actual = new TextEncoder().encode(signature)
+  if (!timingSafeEqualBytes(expected, actual)) return false
   return Number(expiry) > now
 }
