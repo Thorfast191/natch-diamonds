@@ -6,9 +6,24 @@
 export const SESSION_COOKIE_NAME = 'natch_admin_session'
 const SESSION_TTL_MS = 1000 * 60 * 60 * 8
 
-function getSecret(): string {
+// The admin login password. Checked against what the operator types in on
+// the login form.
+function getAdminPassword(): string {
   const secret = process.env.ADMIN_PASSWORD
   if (!secret) throw new Error('ADMIN_PASSWORD is not set')
+  return secret
+}
+
+// The secret used to HMAC-sign session tokens. Deliberately separate from
+// ADMIN_PASSWORD: session tokens are sent in a cookie that can leak (XSS,
+// logging, a shared machine, etc.), and a leaked token's plaintext expiry +
+// signature is otherwise an offline dictionary-attack oracle against
+// whatever secret produced the signature. If SESSION_SECRET recovered from
+// a leaked cookie, the human-chosen admin password itself stays safe.
+// Falls back to ADMIN_PASSWORD so nothing breaks if it's unset.
+function getSigningSecret(): string {
+  const secret = process.env.SESSION_SECRET ?? process.env.ADMIN_PASSWORD
+  if (!secret) throw new Error('SESSION_SECRET or ADMIN_PASSWORD must be set')
   return secret
 }
 
@@ -21,7 +36,7 @@ function bufferToHex(buffer: ArrayBuffer): string {
 async function sign(value: string): Promise<string> {
   const key = await crypto.subtle.importKey(
     'raw',
-    new TextEncoder().encode(getSecret()),
+    new TextEncoder().encode(getSigningSecret()),
     { name: 'HMAC', hash: 'SHA-256' },
     false,
     ['sign'],
@@ -43,7 +58,7 @@ function timingSafeEqualBytes(a: Uint8Array, b: Uint8Array): boolean {
 }
 
 export async function checkPassword(candidate: string): Promise<boolean> {
-  const expected = getSecret()
+  const expected = getAdminPassword()
   const a = new TextEncoder().encode(candidate)
   const b = new TextEncoder().encode(expected)
   if (a.length !== b.length) return false

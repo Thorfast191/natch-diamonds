@@ -53,9 +53,15 @@ Prisma + Neon (Postgres) · Cloudinary (image upload)
 ### Admin password
 
 Set `ADMIN_PASSWORD` in `.env` to whatever password you'll use to view
-`/admin`. It's checked with a constant-time comparison and used to sign
-the session cookie — anyone with this password can view submitted
-inquiries, so treat it like a real credential.
+`/admin`. It's checked with a constant-time comparison — anyone with this
+password can view submitted inquiries, so treat it like a real credential.
+
+Optionally, also set `SESSION_SECRET` to a separate high-entropy value used
+to sign the admin session cookie. If unset, session signing falls back to
+`ADMIN_PASSWORD`, which is fine for local/demo use but not recommended for
+production: a separate signing secret means that even if a session cookie
+leaks, an attacker can't run an offline dictionary attack against it to
+recover the login password itself.
 
 ## Deploying to Vercel
 
