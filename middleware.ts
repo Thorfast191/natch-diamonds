@@ -12,8 +12,9 @@ export async function middleware(request: NextRequest) {
   try {
     isAuthenticated = await verifySessionToken(token)
   } catch {
-    // ADMIN_PASSWORD is unset (misconfigured deployment) — treat as
-    // unauthenticated rather than letting the exception surface as a 500.
+    // ADMIN_PASSWORD is unset, or another session-config problem
+    // (misconfigured deployment) — treat as unauthenticated rather than
+    // letting the exception surface as a 500.
     isAuthenticated = false
   }
 

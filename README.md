@@ -19,7 +19,7 @@ Prisma + Neon (Postgres) · Cloudinary (image upload)
 2. Copy `.env.example` to `.env` and fill in the values (see below).
 3. Apply the database schema:
    ```
-   npx prisma migrate dev
+   npx prisma migrate deploy
    ```
 4. Seed placeholder products:
    ```
@@ -72,9 +72,9 @@ recover the login password itself.
 npx vercel
 ```
 
-Set the four environment variables (`DATABASE_URL`,
+Set the five environment variables (`DATABASE_URL`,
 `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`, `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET`,
-`ADMIN_PASSWORD`) in the Vercel project settings (or via
+`ADMIN_PASSWORD`, `SESSION_SECRET`) in the Vercel project settings (or via
 `vercel env add`), then:
 
 ```

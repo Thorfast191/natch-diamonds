@@ -18,11 +18,11 @@ function getAdminPassword(): string {
 // ADMIN_PASSWORD: session tokens are sent in a cookie that can leak (XSS,
 // logging, a shared machine, etc.), and a leaked token's plaintext expiry +
 // signature is otherwise an offline dictionary-attack oracle against
-// whatever secret produced the signature. If SESSION_SECRET recovered from
-// a leaked cookie, the human-chosen admin password itself stays safe.
+// whatever secret produced the signature. If SESSION_SECRET is recovered
+// from a leaked cookie, the human-chosen admin password itself stays safe.
 // Falls back to ADMIN_PASSWORD so nothing breaks if it's unset.
 function getSigningSecret(): string {
-  const secret = process.env.SESSION_SECRET ?? process.env.ADMIN_PASSWORD
+  const secret = process.env.SESSION_SECRET || process.env.ADMIN_PASSWORD
   if (!secret) throw new Error('SESSION_SECRET or ADMIN_PASSWORD must be set')
   return secret
 }
