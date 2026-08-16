@@ -39,7 +39,10 @@ Prisma + Neon (Postgres) · Cloudinary (image upload)
 3. Copy the connection string it gives you (starts with `postgresql://`)
    into `DATABASE_URL` in `.env`. Use the pooled connection string if
    offered.
-4. Run `npx prisma migrate dev` to create the tables on Neon.
+4. Run `npx prisma migrate deploy` to create the tables on Neon. (Use
+   `migrate deploy`, not `migrate dev` — `migrate dev` is a development-only
+   command that can detect drift and prompt to reset/drop the database,
+   which would destroy real data in production.)
 
 ### Cloudinary (image upload) — free tier
 
