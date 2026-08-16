@@ -12,14 +12,19 @@ export async function submitBespokeInquiry(input: BespokeInput): Promise<Bespoke
   const errors = validateBespokeInput(input)
   if (errors.length > 0) return { success: false, errors }
 
-  await prisma.bespokeInquiry.create({
-    data: {
-      name: input.name.trim(),
-      email: input.email.trim(),
-      description: input.description.trim(),
-      inspirationImageUrl: input.inspirationImageUrl || null,
-    },
-  })
+  try {
+    await prisma.bespokeInquiry.create({
+      data: {
+        name: input.name.trim(),
+        email: input.email.trim(),
+        description: input.description.trim(),
+        inspirationImageUrl: input.inspirationImageUrl || null,
+      },
+    })
+  } catch (error) {
+    console.error('Failed to create bespoke inquiry', error)
+    return { success: false, errors: ['Something went wrong. Please try again.'] }
+  }
 
   return { success: true }
 }

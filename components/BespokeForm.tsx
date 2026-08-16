@@ -19,18 +19,23 @@ export function BespokeForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     startTransition(async () => {
-      const result = await submitBespokeInquiry({
-        name,
-        email,
-        description,
-        inspirationImageUrl: imageUrl ?? undefined,
-      })
-      if (!result.success) {
-        setErrors(result.errors ?? [])
-        return
+      try {
+        const result = await submitBespokeInquiry({
+          name,
+          email,
+          description,
+          inspirationImageUrl: imageUrl ?? undefined,
+        })
+        if (!result.success) {
+          setErrors(result.errors ?? [])
+          return
+        }
+        setErrors([])
+        setSuccess(true)
+      } catch (error) {
+        console.error('Failed to submit bespoke inquiry', error)
+        setErrors(['Something went wrong. Please try again.'])
       }
-      setErrors([])
-      setSuccess(true)
     })
   }
 

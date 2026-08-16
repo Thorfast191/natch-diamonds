@@ -23,20 +23,25 @@ export function SourcingForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     startTransition(async () => {
-      const result = await submitSourcingInquiry({
-        name,
-        email,
-        buyerType,
-        companyName: buyerType === 'trade' ? companyName : undefined,
-        interest,
-        details,
-      })
-      if (!result.success) {
-        setErrors(result.errors ?? [])
-        return
+      try {
+        const result = await submitSourcingInquiry({
+          name,
+          email,
+          buyerType,
+          companyName: buyerType === 'trade' ? companyName : undefined,
+          interest,
+          details,
+        })
+        if (!result.success) {
+          setErrors(result.errors ?? [])
+          return
+        }
+        setErrors([])
+        setSuccess(true)
+      } catch (error) {
+        console.error('Failed to submit sourcing inquiry', error)
+        setErrors(['Something went wrong. Please try again.'])
       }
-      setErrors([])
-      setSuccess(true)
     })
   }
 
