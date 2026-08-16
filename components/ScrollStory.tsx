@@ -37,24 +37,42 @@ function DesktopScrollStory({ reduced }: { reduced: boolean }) {
 
   return (
     <div ref={containerRef} className="relative hidden h-[300vh] md:block">
-      <div className="sticky top-0 flex h-screen items-center gap-16 px-16">
-        <div className="w-1/2">
-          <p className="text-xs uppercase tracking-[0.3em] text-gold">Three Houses, One Vision</p>
+      <div className="sticky top-0 flex h-screen flex-col justify-between px-16 py-20">
+        <p className="text-xs uppercase tracking-[0.3em] text-gold">Three Houses, One Vision</p>
+        <div className="flex items-center gap-16">
+          <div className="w-1/2">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={panel.key}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduced ? 0.4 : 0.6, ease: EASE }}
+                className="select-none font-display text-[40vh] leading-none text-white/10"
+                aria-hidden="true"
+              >
+                {String(index + 1).padStart(2, '0')}
+              </motion.p>
+            </AnimatePresence>
+          </div>
+          <div className="w-1/2">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={panel.key}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: reduced ? 0.4 : 0.6, ease: EASE }}
+              >
+                <h3 className="font-display text-5xl">{panel.title}</h3>
+                <p className="mt-6 max-w-md text-lg text-white/70">{panel.body}</p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
-        <div className="w-1/2">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={panel.key}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: reduced ? 0.4 : 0.6, ease: EASE }}
-            >
-              <h3 className="font-display text-4xl">{panel.title}</h3>
-              <p className="mt-4 max-w-md text-white/70">{panel.body}</p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        <p className="text-xs uppercase tracking-[0.3em] text-white/40">
+          {String(index + 1).padStart(2, '0')} / {String(STORY_PANELS.length).padStart(2, '0')}
+        </p>
       </div>
     </div>
   )
