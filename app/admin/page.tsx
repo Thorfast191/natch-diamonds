@@ -1,5 +1,7 @@
 import { prisma } from '@/lib/prisma'
 
+export const dynamic = 'force-dynamic'
+
 export default async function AdminPage() {
   const [bespokeInquiries, sourcingInquiries] = await Promise.all([
     prisma.bespokeInquiry.findMany({ orderBy: { createdAt: 'desc' } }),
