@@ -1,0 +1,31 @@
+import type { Metadata } from 'next'
+import { Cormorant_Garamond, Inter } from 'next/font/google'
+import { MotionProvider } from '@/components/MotionProvider'
+import './globals.css'
+
+const display = Cormorant_Garamond({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-display',
+})
+
+const body = Inter({
+  subsets: ['latin'],
+  variable: '--font-body',
+})
+
+export const metadata: Metadata = {
+  title: 'Natch Diamonds',
+  description:
+    'Natural and lab-grown diamond jewellery — collection, bespoke, and trade sourcing.',
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${display.variable} ${body.variable}`}>
+      <body className="bg-ivory font-sans text-ink antialiased">
+        <MotionProvider>{children}</MotionProvider>
+      </body>
+    </html>
+  )
+}
