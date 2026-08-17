@@ -4,3 +4,15 @@ node_modules
 .env*.local
 .DS_Store
 *.tsbuildinfo
+
+# Local-only Claude Code settings (machine-specific permissions, not shared config)
+.claude/settings.local.json
+
+# Claude Code worktrees (managed by Superpowers, not part of the repo history)
+.claude/worktrees/
+
+# Playwright MCP browser-verification artifacts (console logs, page snapshots, screenshots)
+.playwright-mcp/
+
+# Superpowers SDD/plan workspaces (process artifacts, not project source)
+.superpowers/
