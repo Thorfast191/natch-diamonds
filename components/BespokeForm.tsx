@@ -110,7 +110,7 @@ export function BespokeForm() {
             <button
               type="button"
               onClick={() => open()}
-              className="mt-2 border border-ink/20 px-4 py-2 text-sm hover:border-gold"
+              className="mt-2 rounded-full border border-ink/20 px-4 py-2 text-sm transition-colors hover:border-gold"
             >
               {imageUrl ? 'Replace photo' : 'Upload photo'}
             </button>
@@ -131,7 +131,7 @@ export function BespokeForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="bg-charcoal px-8 py-3 text-sm uppercase tracking-widest text-white hover:bg-gold disabled:opacity-50"
+        className="rounded-full bg-ink px-8 py-3 text-sm uppercase tracking-widest text-ivory transition-colors hover:bg-gold hover:text-ink disabled:opacity-50"
       >
         {isPending ? 'Submitting…' : 'Submit Inquiry'}
       </button>

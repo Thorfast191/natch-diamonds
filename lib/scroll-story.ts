@@ -23,9 +23,3 @@ export const STORY_PANELS: StoryPanel[] = [
     body: 'Natural or lab-grown, private client or trade buyer — stones sourced and verified to the specification you set.',
   },
 ]
-
-export function getStoryIndex(progress: number): 0 | 1 | 2 {
-  if (progress < 1 / 3) return 0
-  if (progress < 2 / 3) return 1
-  return 2
-}

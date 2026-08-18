@@ -1,98 +1,38 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useReducedMotion,
-  useScroll,
-} from 'framer-motion'
-import { EASE } from '@/lib/motion'
-import { STORY_PANELS, getStoryIndex } from '@/lib/scroll-story'
+import { motion, useReducedMotion } from 'framer-motion'
+import { EASE, STAGGER_CHILDREN } from '@/lib/motion'
+import { STORY_PANELS } from '@/lib/scroll-story'
 
 export function ScrollStory() {
   const reduced = !!useReducedMotion()
 
   return (
-    <section className="bg-charcoal text-white">
-      <h2 className="sr-only">Three Houses, One Vision</h2>
-      <DesktopScrollStory reduced={reduced} />
-      <MobileScrollStory reduced={reduced} />
-    </section>
-  )
-}
-
-function DesktopScrollStory({ reduced }: { reduced: boolean }) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ['start start', 'end end'] })
-  const [index, setIndex] = useState<0 | 1 | 2>(0)
-
-  useMotionValueEvent(scrollYProgress, 'change', (value) => {
-    const next = getStoryIndex(value)
-    setIndex((current) => (current === next ? current : next))
-  })
-
-  const panel = STORY_PANELS[index]
-
-  return (
-    <div ref={containerRef} className="relative hidden h-[300vh] md:block">
-      <div className="sticky top-0 flex h-screen flex-col justify-between px-16 py-20">
+    <section className="border-t border-ink/10 px-6 py-24">
+      <div className="mx-auto max-w-6xl">
         <p className="text-xs uppercase tracking-[0.3em] text-gold">Three Houses, One Vision</p>
-        <div className="flex items-center gap-16">
-          <div className="w-1/2">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={panel.key}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: reduced ? 0.4 : 0.6, ease: EASE }}
-                className="select-none font-display text-[40vh] leading-none text-white/10"
-                aria-hidden="true"
-              >
+        <div className="mt-12 grid grid-cols-1 gap-12 sm:grid-cols-3 sm:gap-8">
+          {STORY_PANELS.map((panel, index) => (
+            <motion.div
+              key={panel.key}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: reduced ? 0.4 : 0.7,
+                delay: reduced ? 0 : index * STAGGER_CHILDREN,
+                ease: EASE,
+              }}
+            >
+              <p className="font-display text-6xl leading-none text-ink/10" aria-hidden="true">
                 {String(index + 1).padStart(2, '0')}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-          <div className="w-1/2">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={panel.key}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: reduced ? 0.4 : 0.6, ease: EASE }}
-              >
-                <h3 className="font-display text-5xl">{panel.title}</h3>
-                <p className="mt-6 max-w-md text-lg text-white/70">{panel.body}</p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </p>
+              <h3 className="mt-4 font-display text-2xl text-ink">{panel.title}</h3>
+              <p className="mt-3 text-ink/60">{panel.body}</p>
+            </motion.div>
+          ))}
         </div>
-        <p className="text-xs uppercase tracking-[0.3em] text-white/40">
-          {String(index + 1).padStart(2, '0')} / {String(STORY_PANELS.length).padStart(2, '0')}
-        </p>
       </div>
-    </div>
-  )
-}
-
-function MobileScrollStory({ reduced }: { reduced: boolean }) {
-  return (
-    <div className="space-y-16 px-6 py-24 md:hidden">
-      {STORY_PANELS.map((panel) => (
-        <motion.div
-          key={panel.key}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: reduced ? 0.4 : 0.7, ease: EASE }}
-        >
-          <h3 className="font-display text-3xl">{panel.title}</h3>
-          <p className="mt-4 text-white/70">{panel.body}</p>
-        </motion.div>
-      ))}
-    </div>
+    </section>
   )
 }

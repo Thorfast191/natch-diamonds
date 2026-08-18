@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/Hero'
 import { CollectionGrid } from '@/components/CollectionGrid'
 import { ScrollStory } from '@/components/ScrollStory'
@@ -13,22 +14,25 @@ export default async function HomePage() {
 
   return (
     <main>
+      <Nav />
       <Hero />
       <CollectionGrid products={products} />
       <ScrollStory />
-      <section className="mx-auto max-w-2xl px-6 py-24">
-        <h2 className="font-display text-3xl text-ink sm:text-4xl">Bespoke</h2>
-        <p className="mt-4 text-ink/70">
-          Tell us what you have in mind, and share a photo if you have one.
-        </p>
-        <div className="mt-12">
-          <BespokeForm />
+      <section id="bespoke" className="border-t border-ink/10 px-6 py-24 scroll-mt-20">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="font-display text-3xl text-ink sm:text-4xl">Bespoke</h2>
+          <p className="mt-4 text-ink/70">
+            Tell us what you have in mind, and share a photo if you have one.
+          </p>
+          <div className="mt-12">
+            <BespokeForm />
+          </div>
         </div>
       </section>
-      <section className="bg-charcoal px-6 py-24 text-white">
+      <section id="sourcing" className="border-t border-ink/10 px-6 py-24 scroll-mt-20">
         <div className="mx-auto max-w-2xl">
-          <h2 className="font-display text-3xl sm:text-4xl">Diamond Sourcing</h2>
-          <p className="mt-4 text-white/70">
+          <h2 className="font-display text-3xl text-ink sm:text-4xl">Diamond Sourcing</h2>
+          <p className="mt-4 text-ink/70">
             For private clients and trade buyers sourcing natural or lab-grown stones.
           </p>
           <div className="mt-12">
