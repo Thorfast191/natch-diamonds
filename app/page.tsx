@@ -10,7 +10,9 @@ import { Footer } from '@/components/Footer'
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  const products = await prisma.product.findMany({ orderBy: { createdAt: 'asc' } })
+  const products = await prisma.product.findMany({
+    orderBy: [{ createdAt: 'asc' }, { id: 'asc' }],
+  })
 
   return (
     <main>

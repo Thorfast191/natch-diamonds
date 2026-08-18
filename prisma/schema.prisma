@@ -8,12 +8,39 @@ datasource db {
 }
 
 model Product {
-  id         String   @id @default(cuid())
-  name       String
-  collection String
-  price      Int
-  imageUrl   String
-  createdAt  DateTime @default(now())
+  id          String   @id @default(cuid())
+  name        String
+  collection  String
+  price       Int
+  imageUrl    String
+  description String   @default("")
+  createdAt   DateTime @default(now())
+}
+
+model Order {
+  id           String      @id @default(cuid())
+  name         String
+  email        String
+  phone        String?
+  addressLine1 String
+  addressLine2 String?
+  city         String
+  region       String
+  postalCode   String
+  country      String
+  total        Int
+  createdAt    DateTime    @default(now())
+  items        OrderItem[]
+}
+
+model OrderItem {
+  id          String @id @default(cuid())
+  orderId     String
+  order       Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  productName String
+  price       Int
+  quantity    Int
 }
 
 model BespokeInquiry {

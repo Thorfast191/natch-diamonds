@@ -29,3 +29,14 @@ export async function login(formData: FormData) {
 
   redirect('/admin')
 }
+
+export async function logout() {
+  cookies().set(SESSION_COOKIE_NAME, '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 0,
+  })
+  redirect('/admin/login')
+}

@@ -1,7 +1,6 @@
 import { ProductCard } from './ProductCard'
+import { COLLECTIONS } from '@/lib/collections'
 import type { Product } from '@prisma/client'
-
-const COLLECTIONS = ['The Studs', 'The Hoops', 'The Tennis'] as const
 
 export function CollectionGrid({ products }: { products: Product[] }) {
   return (
