@@ -2,6 +2,7 @@
 
 import { revalidatePath } from 'next/cache'
 import { prisma } from '@/lib/prisma'
+import { requireAdminSession } from '@/lib/admin-guard'
 
 export interface DeleteActionResult {
   success: boolean
@@ -9,6 +10,7 @@ export interface DeleteActionResult {
 }
 
 export async function deleteOrder(id: string): Promise<DeleteActionResult> {
+  await requireAdminSession()
   try {
     await prisma.order.delete({ where: { id } })
   } catch (error) {
@@ -20,6 +22,7 @@ export async function deleteOrder(id: string): Promise<DeleteActionResult> {
 }
 
 export async function deleteBespokeInquiry(id: string): Promise<DeleteActionResult> {
+  await requireAdminSession()
   try {
     await prisma.bespokeInquiry.delete({ where: { id } })
   } catch (error) {
@@ -31,6 +34,7 @@ export async function deleteBespokeInquiry(id: string): Promise<DeleteActionResu
 }
 
 export async function deleteSourcingInquiry(id: string): Promise<DeleteActionResult> {
+  await requireAdminSession()
   try {
     await prisma.sourcingInquiry.delete({ where: { id } })
   } catch (error) {

@@ -82,3 +82,14 @@ export async function verifySessionToken(
   if (!timingSafeEqualBytes(expected, actual)) return false
   return Number(expiry) > now
 }
+
+export async function isAdminAuthenticated(token: string | undefined): Promise<boolean> {
+  try {
+    return await verifySessionToken(token)
+  } catch {
+    // ADMIN_PASSWORD is unset, or another session-config problem
+    // (misconfigured deployment) — treat as unauthenticated rather than
+    // letting the exception surface.
+    return false
+  }
+}

@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
+import { requireAdminSession } from '@/lib/admin-guard'
 import { validateProductInput, type ProductInput } from './validation'
 
 export interface ProductActionResult {
@@ -21,6 +22,7 @@ function toProductData(input: ProductInput) {
 }
 
 export async function createProduct(input: ProductInput): Promise<ProductActionResult> {
+  await requireAdminSession()
   const errors = validateProductInput(input)
   if (errors.length > 0) return { success: false, errors }
 
@@ -35,6 +37,7 @@ export async function createProduct(input: ProductInput): Promise<ProductActionR
 }
 
 export async function updateProduct(id: string, input: ProductInput): Promise<ProductActionResult> {
+  await requireAdminSession()
   const errors = validateProductInput(input)
   if (errors.length > 0) return { success: false, errors }
 
@@ -49,6 +52,7 @@ export async function updateProduct(id: string, input: ProductInput): Promise<Pr
 }
 
 export async function deleteProduct(id: string): Promise<{ success: boolean; error?: string }> {
+  await requireAdminSession()
   try {
     await prisma.product.delete({ where: { id } })
   } catch (error) {
